@@ -4,5 +4,5 @@ MAINTAINER kiwenlau <kiwenlau@gmail.com>
 
 WORKDIR /root
 
-ADD install-galaxy.sh /tmp/install-galaxy.sh
-RUN sh /tmp/install-galaxy.sh
+ADD install-galaxy.sh /root/install-galaxy.sh
+RUN bash /root/install-galaxy.sh
