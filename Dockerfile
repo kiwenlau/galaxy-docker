@@ -10,4 +10,7 @@ ADD initialize-galaxy.sh /root/initialize-galaxy.sh
 RUN bash /root/install-galaxy.sh
 RUN bash /root/initialize-galaxy.sh
 
+ADD start-galaxy.sh /root/start-galaxy.sh
+CMD ["/root/start-galaxy.sh"]
+
 # sudo docker build -t kiwenlau/galaxy-docker .

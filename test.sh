@@ -2,4 +2,4 @@
 
 sudo docker build -t kiwenlau/galaxy-docker .
 
-sudo docker run -it kiwenlau/galaxy-docker bash
+sudo docker run -it -d kiwenlau/galaxy-docker 
