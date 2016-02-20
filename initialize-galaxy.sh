@@ -1,5 +1,7 @@
 #!/bin/sh
 
+service mysql start
+
 log_file='/tmp/galaxy.log'
 pid_file='/tmp/galaxy.pid'
 
@@ -22,3 +24,5 @@ if [ $exit_code != 0 ] ; then
 fi
 
 /root/galaxy/run.sh --stop-daemon --log-file=$log_file --pid-file=$pid_file
+
+service mysql stop

@@ -4,17 +4,20 @@ MAINTAINER kiwenlau <kiwenlau@gmail.com>
 
 WORKDIR /root
 
-# install and initialize galaxy
-ADD install-galaxy.sh /root/install-galaxy.sh
-ADD initialize-galaxy.sh /root/initialize-galaxy.sh
-RUN bash /root/install-galaxy.sh
+# install vim, wget, python and mysql
+RUN apt-get update && apt-get install -y vim wget python mysql-server
+ 
+# install galaxy v15.10.1
+RUN wget https://github.com/galaxyproject/galaxy/archive/v15.10.1.tar.gz && \
+	tar -xzvf v15.10.1.tar.gz && \
+	rm v15.10.1.tar.gz && \
+	mv galaxy-15.10.1 galaxy
 
 ADD config/* /tmp/config/
-ADD configure-tools.sh /tmp/configure-tools.sh
-RUN bash /tmp/configure-tools.sh
+ADD configure-galaxy.sh /tmp/configure-galaxy.sh
+RUN bash /tmp/configure-galaxy.sh
 
-ADD swarm.py /root/galaxy/lib/galaxy/jobs/runners/swarm.py
-
+ADD initialize-galaxy.sh /root/initialize-galaxy.sh
 RUN bash /root/initialize-galaxy.sh
 
 ADD start-galaxy.sh /root/start-galaxy.sh
