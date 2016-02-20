@@ -4,5 +4,10 @@ MAINTAINER kiwenlau <kiwenlau@gmail.com>
 
 WORKDIR /root
 
+# install and initialize galaxy
 ADD install-galaxy.sh /root/install-galaxy.sh
+ADD initialize-galaxy.sh /root/initialize-galaxy.sh
 RUN bash /root/install-galaxy.sh
+RUN bash /root/initialize-galaxy.sh
+
+# sudo docker build -t kiwenlau/galaxy-docker .
