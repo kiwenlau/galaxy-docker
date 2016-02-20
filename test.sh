@@ -9,7 +9,7 @@ echo -e "\nstart galaxy container..."
 
 # sudo docker run -it --name=galaxy kiwenlau/galaxy-docker bash
 
-sudo docker run -it -d --name=galaxy -p 8080:8080 kiwenlau/galaxy-docker > /dev/null 
+sudo docker run -it -d --privileged --name=galaxy --hostname=galaxy -p 8080:8080 kiwenlau/galaxy-docker > /dev/null 
 
 date
 

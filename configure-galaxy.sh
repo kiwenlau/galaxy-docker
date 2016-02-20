@@ -2,6 +2,7 @@
 
 # configure mysql
 echo "[mysql]\ndefault-character-set=utf8\n" > /etc/mysql/conf.d/mysql_default_character_set_utf8.cnf
+locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 mysql_install_db
 mysqld_safe &
 sleep 2

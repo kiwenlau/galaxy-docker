@@ -20,6 +20,10 @@ RUN bash /tmp/configure-galaxy.sh
 ADD initialize-galaxy.sh /root/initialize-galaxy.sh
 RUN bash /root/initialize-galaxy.sh
 
+RUN apt-get install -y samtools
+
+RUN apt-get -y install make g++ gfortran openjdk-6-jdk subversion libblas-dev liblapack-dev libatlas-base-dev zlib1g-dev python-dev python-scipy
+
 ADD start-galaxy.sh /root/start-galaxy.sh
 CMD ["/root/start-galaxy.sh"]
 
