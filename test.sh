@@ -1,10 +1,12 @@
 #!/bin/bash
 
+echo -e "\nbuild kiwenlau/galaxy-docker image...\n"
 sudo docker build -t kiwenlau/galaxy-docker .
 
 sudo docker rm -f galaxy &> galaxy
 
-sudo docker run -it -d --name=galaxy -p 8080:8080 kiwenlau/galaxy-docker 
+echo -e "\nstart galaxy container..."
+sudo docker run -it -d --name=galaxy -p 8080:8080 kiwenlau/galaxy-docker > /dev/null 
 
 # check the status of galaxy
 echo -e "\nchecking the status of galaxy, please wait..."

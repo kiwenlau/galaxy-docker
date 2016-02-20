@@ -8,6 +8,13 @@ WORKDIR /root
 ADD install-galaxy.sh /root/install-galaxy.sh
 ADD initialize-galaxy.sh /root/initialize-galaxy.sh
 RUN bash /root/install-galaxy.sh
+
+ADD config/* /tmp/config/
+ADD configure-tools.sh /tmp/configure-tools.sh
+RUN bash /tmp/configure-tools.sh
+
+ADD swarm.py /root/galaxy/lib/galaxy/jobs/runners/swarm.py
+
 RUN bash /root/initialize-galaxy.sh
 
 ADD start-galaxy.sh /root/start-galaxy.sh
