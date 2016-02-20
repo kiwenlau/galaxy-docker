@@ -5,7 +5,7 @@ MAINTAINER kiwenlau <kiwenlau@gmail.com>
 WORKDIR /root
 
 # install vim, wget, python and mysql
-RUN apt-get update && apt-get install -y vim wget python mysql-server
+RUN apt-get update && apt-get install -y vim wget python mysql-server samtools
  
 # install galaxy v15.10.1
 RUN wget https://github.com/galaxyproject/galaxy/archive/v15.10.1.tar.gz && \
@@ -13,16 +13,14 @@ RUN wget https://github.com/galaxyproject/galaxy/archive/v15.10.1.tar.gz && \
 	rm v15.10.1.tar.gz && \
 	mv galaxy-15.10.1 galaxy
 
-ADD config/* /tmp/config/
+# ADD tool_data_table_conf.xml /root/galaxy/config/tool_data_table_conf.xml
+# ADD tool_sheds_conf.xml /root/galaxy/config/tool_sheds_conf.xml
+
 ADD configure-galaxy.sh /tmp/configure-galaxy.sh
 RUN bash /tmp/configure-galaxy.sh
 
 ADD initialize-galaxy.sh /root/initialize-galaxy.sh
 RUN bash /root/initialize-galaxy.sh
-
-RUN apt-get install -y samtools
-
-RUN apt-get -y install make g++ gfortran openjdk-6-jdk subversion libblas-dev liblapack-dev libatlas-base-dev zlib1g-dev python-dev python-scipy
 
 ADD start-galaxy.sh /root/start-galaxy.sh
 CMD ["/root/start-galaxy.sh"]
